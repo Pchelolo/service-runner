@@ -1,0 +1,15 @@
+num_workers: 1
+logging:
+  level: fatal
+metrics:
+  - type: prometheus
+    port: 9000
+  - type: statsd
+    host: localhost
+    port: 8125
+services:
+  - name: test
+    module: test/utils/echo_options_server.js
+    conf:
+      port: 12345
+

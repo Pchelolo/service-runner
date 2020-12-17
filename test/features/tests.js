@@ -183,4 +183,16 @@ describe('service-runner tests', () => {
         .finally(() => server.stop());
     });
 
+    it('Must not crash if no options provided', () => {
+        const server = new TestServer(`${__dirname}/../utils/no_metrics.yaml`);
+        return server.start()
+        .then(() => preq.get({ uri: 'http://127.0.0.1:12345' }))
+        .then((res) => {
+            console.log(res.body);
+        })
+        .finally(() => server.stop());
+    });
+
+    // TODO: with a eche_options_server we can create
+
 }, 'service-runner tests');
